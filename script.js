@@ -65,6 +65,11 @@ const preguntas = [
 
 ]
 
+localStorage.setItem("ListaPreguntas", JSON.stringify(preguntas));
+
+console.log(localStorage.getItem("ListaPreguntas"));
+
+
 const botonEmpezar = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const preguntascontainerElement = document.getElementById
