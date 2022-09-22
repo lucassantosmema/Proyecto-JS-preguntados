@@ -70,6 +70,8 @@ localStorage.setItem("ListaPreguntas", JSON.stringify(preguntas));
 console.log(localStorage.getItem("ListaPreguntas"));
 
 
+let respuestascorrectas = 0 ;
+
 const botonEmpezar = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const preguntascontainerElement = document.getElementById
@@ -103,7 +105,7 @@ function mostrarPregunta(pregunta){
         const button = document.createElement('button')
         button.innerText = respuesta.text
         button.classList.add('btn')
-        if (respuesta.correct){
+        if (respuesta.correct === true ){
             button.dataset.correct = respuesta.correct
         }
         button.addEventListener('click',elegirRespuesta)
@@ -132,12 +134,18 @@ function elegirRespuesta(e){
         } else {
             botonEmpezar.innerText = 'Reiniciar'
             botonEmpezar.classList.remove('hide')
-        }
+            Swal.fire(
+                `La cantidad de sus respuestas correctas es ${respuestascorrectas - 9 }` /* se resta -9 xq me toma las respuestas y no se solucionar */
+                
+              )
+            respuestascorrectas = 0  
+        } 
 }
 
 function setStatusClass(element, correcto){
     clearStatusClass(element)
     if(correcto){
+        respuestascorrectas = respuestascorrectas + 1 
         element.classList.add('correct')
     } else {
         element.classList.add('wrong')
