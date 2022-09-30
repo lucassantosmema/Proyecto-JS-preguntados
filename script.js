@@ -1,69 +1,15 @@
-const preguntas = [
-    {
-        pregunta:'Cuantos goles tiene Messi Actualmente?',
-        respuesta:[
-         { text: '120', correct:false},
-         { text: '910', correct:false},
-         { text: '772', correct:true},
-         { text: '768', correct:false}
-        ]
-    },
-    {
-        pregunta:'Quien es el mejor futbolista del mundo?',
-        respuesta:[
-         { text: 'Messi', correct:true},
-         { text: 'Cristiano', correct:true},
-         { text: 'Maradona', correct:false},
-         { text: 'Pele', correct:false}
-        ]
-    },
-    {
-        pregunta:'En que año descendio River Plate?',
-        respuesta:[
-         { text: '2010', correct:false},
-         { text: '2012', correct:false},
-         { text: '2011', correct:true},
-         { text: '2018', correct:false}
-        ]
-    },
-    {
-        pregunta:'Quien gano el mundial 2018?',
-        respuesta:[
-         { text: 'Francia', correct:true},
-         { text: 'Argentina', correct:false},
-         { text: 'Brasil', correct:false},
-         { text: 'Honduras', correct:false}
-        ]
-    },
-    {
-        pregunta:'Cual fue el resultado de la final de libertadores entre Boca y River en 2018?',
-        respuesta:[
-         { text: '3-1 River', correct:true},
-         { text: '3-1 Boca', correct:false},
-         { text: '2-0 Boca', correct:false},
-         { text: '4-0 River', correct:false}
-        ]
-    },
-    {
-        pregunta:'Quien es el mejor futbolista del mundo?',
-        respuesta:[
-         { text: 'Messi', correct:true},
-         { text: 'Cristiano', correct:true},
-         { text: 'Maradona', correct:false},
-         { text: 'Pele', correct:false}
-        ]
-    },
-    {
-        pregunta:'Quien es el mas ganador de balones de oro?',
-        respuesta:[
-         { text: 'Messi', correct:true},
-         { text: 'Cristiano', correct:false},
-         { text: 'Ronaldinho', correct:false},
-         { text: 'Van Basten', correct:false}
-        ]
-    },
+let preguntas = [];
 
-]
+function cargarjson () {
+    fetch('preguntas.json')
+    .then(respuesta => respuesta.json())
+    .then(cuestionario => {
+        cuestionario.forEach(pregunta => {
+            preguntas.push(pregunta);
+        })
+    })
+}  
+cargarjson();
 
 localStorage.setItem("ListaPreguntas", JSON.stringify(preguntas));
 
@@ -135,7 +81,7 @@ function elegirRespuesta(e){
             botonEmpezar.innerText = 'Reiniciar'
             botonEmpezar.classList.remove('hide')
             Swal.fire(
-                `La cantidad de sus respuestas correctas es ${respuestascorrectas - 9 }` /* se resta -9 xq me toma las respuestas y no se solucionar */
+                `La cantidad de sus respuestas correctas es ${respuestascorrectas - 7 }` /* se resta -9 xq me toma las respuestas y no se solucionar */
                 
               )
             respuestascorrectas = 0  
